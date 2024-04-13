@@ -9,4 +9,18 @@ h1, h2, h3, h4 {
 
 .logo {
   height: 45px;
-  }
+}
+
+.cta {
+  background-color: #540D2A !important;
+  color: #FFF !important;
+  font-size: 1.25rem !important;
+}
+
+.cta:hover {
+  background-color: #992350 !important;
+}
+
+.footer-content {
+  width: 195px;
+}
