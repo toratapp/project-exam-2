@@ -12,7 +12,7 @@ function Logout() {
 		navigate("/login");
 	}
 
-	return <Button onClick={handleLogout}>Logout</Button>;
+	return <Button className="mr-3" onClick={handleLogout}>Logout</Button>;
 }
 
 export default Logout;

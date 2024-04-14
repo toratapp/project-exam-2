@@ -1,5 +1,7 @@
+import FirstHeading from "../common/FirstHeading";
+
 function HomePage() {
-  return ( <h1>Home page</h1> );
+  return ( <FirstHeading additionalClass="mt-20 ml-7">Home Page</FirstHeading> );
 }
 
 export default HomePage;

@@ -13,7 +13,7 @@ const useUserStore = create(
 );
 
 export const useUser = () => useUserStore((state) => state.user);
-export const useToken = () => useUserStore((state) => state.user?.accessToken);
+export const useToken = () => useUserStore((state) => state.user?.data.accessToken);
 
 export const useUserActions = () => {
   const { setUser, clearUser } = useUserStore();
