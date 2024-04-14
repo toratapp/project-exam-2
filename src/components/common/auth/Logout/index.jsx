@@ -2,7 +2,7 @@ import { Button } from "react-daisyui";
 import { useNavigate } from "react-router-dom";
 import { useUserActions } from "../../../../stores/useUserStore";
 
-function LogoutButton() {
+function Logout() {
 	const { clearUser } = useUserActions();
 
 	const navigate = useNavigate();
@@ -15,4 +15,4 @@ function LogoutButton() {
 	return <Button onClick={handleLogout}>Logout</Button>;
 }
 
-export default LogoutButton;
+export default Logout;
