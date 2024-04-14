@@ -2,6 +2,13 @@
   max-width: 1500px;
 }
 
+.wrapper {
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
 h1, h2, h3, h4 {
   font-family: "Archivo", Helvetica, Arial, sans-serif;
   color: #3A3228;
@@ -19,6 +26,10 @@ h1, h2, h3, h4 {
 
 .cta:hover {
   background-color: #992350 !important;
+}
+
+.error {
+  color: #b91c1c !important;
 }
 
 .footer-content {
