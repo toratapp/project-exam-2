@@ -18,7 +18,11 @@ module.exports = {
     fontFamily: {
       "sans": ["Sarabun", "Helvetica", "Arial", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      aspectRatio: {
+        '4/3': '4 / 3',
+      }
+    },
   },
   plugins: [require('daisyui')],
   daisyui: {
