@@ -27,17 +27,15 @@ h1, h2, h3, h4 {
   min-height: auto !important;
 }
 
-.navbar__buttons .menu-horizontal {
-  justify-content: space-between;
-  width: 100%;
-  display: flex;
+.nav__icon-button {
+  display: block;
+  position: static;
+  text-align: center;
 }
 
-.navbar__buttons .menu-horizontal > * {
-  flex-grow: 1;
-  padding: 0.6rem;
-  margin-left: 10px;
-  margin-right: 10px;
+.nav__icon-button a {
+  display: inline-block !important;
+  padding: 0.7rem;
 }
 
 .navbar__buttons a:hover {
@@ -57,10 +55,6 @@ h1, h2, h3, h4 {
 
 .navbar-with-buttons i:hover {
   color: #992350;
-}
-
-.navbar-with-buttons a {
-  padding: 0rem;
 }
 
 .navbar-with-buttons .menu {
@@ -87,23 +81,27 @@ h1, h2, h3, h4 {
   background: #FFFBF3;
 }
 
-.extra-header-mobile .btn {
+.register-login-logout .btn {
   background-color: #1D4F25;
   color: #fff;
   font-size: 1rem;
   padding: 0.9rem;
 }
 
-.extra-header-mobile .btn:hover {
+.register-login-logout .btn:hover {
   background-color: #267F35;
   font-style: italic;
 }
 
-.extra-header-mobile li {
+.register-login-logout li {
   list-style: none;
 }
 
-.footer-content {
-  width: 195px;
-  margin-bottom: 70px;
+@media (min-width: 768px) {
+  .navbar-with-buttons {
+    bottom: auto;
+    top: 0;
+    border-top: none;
+    border-bottom: 2px solid #540D2A;
+  }
 }
