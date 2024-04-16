@@ -20,7 +20,7 @@ function HomePage() {
   }
 
   if(isError) {
-    return <p className="p-4">Error loading posts.</p>
+    return <p className="p-4">Error loading posts.</p>;
   }
 
   return ( 

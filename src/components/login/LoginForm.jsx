@@ -3,10 +3,12 @@ import ErrorMessage from "../common/ErrorMessage";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from "./loginSchema";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LOGIN_URL } from "../constants/api";
 import { useNavigate } from "react-router-dom";
 import { useUserActions } from "../../stores/useUserStore";
+import { useCreateApiKey } from "../../hooks/useCreateApiKey";
+import { useApiKeyActions } from "../../stores/useApiKeyStore";
 
 function LoginForm() {
 
@@ -14,8 +16,15 @@ function LoginForm() {
   const [error, setError] = useState(null);
 
   const { setUser } = useUserActions();
-
+  const { json: apiKeyData, isError } = useCreateApiKey();
+  const { setApiKey } = useApiKeyActions();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isError && apiKeyData) {
+      setApiKey();
+    }
+  }, [apiKeyData, isError, setApiKey]);
 
   const {
     register,

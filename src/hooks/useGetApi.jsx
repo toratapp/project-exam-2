@@ -1,33 +1,49 @@
 import { useState, useEffect } from "react";
+import { useToken } from "../stores/useUserStore";
+import { useApiKey } from "../stores/useApiKeyStore";
 
 export const useGetApi = (url) => {
-	const [data, setData] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
-	const [isError, setIsError] = useState(null);
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(null);
+  const token = useToken();
+	const apiKey = useApiKey();
+	console.log("Retrieved apiKey: ", apiKey)
 
-	useEffect(() => {
-		async function getApiData() {
-			try {
+  useEffect(() => {
+    async function getApiData() {
+      const options = {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+          "X-Requested-With": "",
+					"X-Noroff-API-Key": apiKey,
+        }
+      };
+
+      try {
         setIsError(false);
         setIsLoading(true);
-				const response = await fetch(url);
+        const response = await fetch(url, options);
 
-				if (response.ok) {
+        if (response.ok) {
           const data = await response.json();
-          return setData(data);
-				}
+          console.log(data);
+          setData(data);
+        } else {
+          throw new Error("Error loading products");
+        }
+      } catch (error) {
+        console.log(error);
+        setIsError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    }
 
-				throw new Error("Error loading products");
-			} catch (error) {
-				console.log(error);
-				setIsError(error.message);
-			} finally {
-				setIsLoading(false);
-			}
-		}
+    getApiData();
+  }, [url, token]); // Pass token as a dependency directly
 
-		getApiData();
-	}, [url]);
-
-	return { data, isLoading, isError };
+  return { data, isLoading, isError };
 };

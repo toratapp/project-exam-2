@@ -8,7 +8,7 @@ function Nav() {
   return (
     <div>
       <ExtraHeaderMobile />
-      <Navbar className="navbar-with-buttons fixed md:h-16 md:justify-between">
+      <Navbar className="navbar-with-buttons fixed md:h-16 md:justify-between z-50">
         <div className="hidden md:block">
           <Link to="/">
             <img src={Logo} className="logo p-0.5 md:p-0 ml-2 md:ml-4" alt="Logo" />
