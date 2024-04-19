@@ -21,8 +21,8 @@ function PostItem({ post }) {
   const truncatedBody = truncateText(body || '', 15);
 
   return (
-    <Card>
-      <Link to={`post/${id}`}>
+    <Card className="flex flex-row">
+      <Link className="flex-1 block" to={`post/${id}`}>
         <figure>
           <img className="aspect-4/3 w-full h-auto object-cover"
                src={mediaUrl || placeholderImageUrl}
@@ -32,7 +32,7 @@ function PostItem({ post }) {
                }} />
         </figure>
       </Link>
-      <Card.Body>
+      <Card.Body className="flex-1">
         <Link to={`post/${id}`}><Card.Title tag="h2">{title}</Card.Title></Link>
         {body ? <p>{truncatedBody}</p> : <p>No body available</p>}
         <Card.Actions className="justify-end">
