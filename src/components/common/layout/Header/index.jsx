@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import Logo from '/logo.svg';
 import ExtraHeaderMobile from "./ExtraHeaderMobile";
 import RegisterLoginLogout from "./RegisterLoginLogout";
+import { useUserName } from "../../../../stores/useUserStore";
 
 function Nav() {
+  const name = useUserName();
+
   return (
     <div>
       <ExtraHeaderMobile />
@@ -26,7 +29,7 @@ function Nav() {
               <Link to="/"><i className="fa-solid fa-magnifying-glass"></i></Link>
             </Menu.Item>
             <Menu.Item className="nav__icon-button">
-              <Link to="/"><i className="fa-solid fa-user"></i></Link>
+              <Link to={`profile/${name}`}><i className="fa-solid fa-user"></i></Link>
             </Menu.Item>
           </Menu>
         </div>

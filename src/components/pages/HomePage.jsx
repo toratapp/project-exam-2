@@ -24,7 +24,7 @@ function HomePage() {
   }
 
   return ( 
-    <section>
+    <section className="container mx-auto">
       <FirstHeading additionalClass="mt-20 ml-7">Posts</FirstHeading>
       <PostList  posts={data} />
     </section>

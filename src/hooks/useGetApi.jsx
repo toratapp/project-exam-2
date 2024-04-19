@@ -8,7 +8,6 @@ export const useGetApi = (url) => {
   const [isError, setIsError] = useState(null);
   const token = useToken();
 	const apiKey = useApiKey();
-	console.log("Retrieved apiKey: ", apiKey)
 
   useEffect(() => {
     async function getApiData() {
@@ -32,7 +31,7 @@ export const useGetApi = (url) => {
           console.log(data);
           setData(data);
         } else {
-          throw new Error("Error loading products");
+          throw new Error("Error loading results");
         }
       } catch (error) {
         console.log(error);
