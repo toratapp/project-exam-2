@@ -2,12 +2,14 @@ import PropTypes from 'prop-types';
 import { Card } from 'react-daisyui';
 import { Link } from 'react-router-dom';
 
+const placeholderImageUrl = "https://teidsvag.com/no-image2.jpg";
+
 function PostItem({ post }) {
   const { id, title, body, media } = post;
   const mediaUrl = media?.url;
 
   const truncateText = (text, limit) => {
-    if (!text) return ''; // Return an empty string if text is null or undefined
+    if (!text) return '';
     const words = text.split(' ');
     const truncated = words.slice(0, limit).join(' ');
     if (words.length > limit) {
@@ -16,20 +18,23 @@ function PostItem({ post }) {
     return truncated;
   };
 
-  const truncatedBody = truncateText(body || '', 15); // Provide a default value for body
+  const truncatedBody = truncateText(body || '', 15);
 
   return (
     <Card>
-      {mediaUrl && (
-        <Link to={`post/${id}`}>
-          <figure>
-            <img className="aspect-4/3 w-full h-auto object-cover" src={mediaUrl} alt={title} />
-          </figure>
-        </Link>
-      )}
+      <Link to={`post/${id}`}>
+        <figure>
+          <img className="aspect-4/3 w-full h-auto object-cover"
+               src={mediaUrl || placeholderImageUrl}
+               alt={title}
+               onError={(e) => {
+                 e.target.src = placeholderImageUrl;
+               }} />
+        </figure>
+      </Link>
       <Card.Body>
         <Link to={`post/${id}`}><Card.Title tag="h2">{title}</Card.Title></Link>
-        {body ? <p>{truncatedBody}</p> : <p>No body available</p>} {/* Render alternative UI when body is null */}
+        {body ? <p>{truncatedBody}</p> : <p>No body available</p>}
         <Card.Actions className="justify-end">
           <Link to={`product/${id}`} className="text-link">Read more</Link>
         </Card.Actions>
@@ -44,10 +49,10 @@ PostItem.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    body: PropTypes.string, // Make body PropTypes.string without isRequired
+    body: PropTypes.string,
     media: PropTypes.shape({
       url: PropTypes.string.isRequired,
       alt: PropTypes.string
-    }) // Make media PropTypes.shape without isRequired
+    })
   }).isRequired
 };

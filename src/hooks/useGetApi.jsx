@@ -43,7 +43,7 @@ export const useGetApi = (url) => {
     }
 
     getApiData();
-  }, [url, token]); // Pass token as a dependency directly
+  }, [url, token, apiKey]);
 
   return { data, isLoading, isError };
 };

@@ -6,7 +6,7 @@ import RegisterLoginLogout from "./RegisterLoginLogout";
 
 function ExtraHeaderMobile() {
   return ( 
-    <div className="md:hidden fixed top-0 w-full extra-header-mobile h-16 flex flex-row justify-between items-center">
+    <div className="md:hidden fixed top-0 w-full extra-header-mobile h-16 flex flex-row justify-between items-center z-50">
       <Link to="/">
         <img src={Logo} className="logo ml-4" alt="Logo" />
       </Link>
