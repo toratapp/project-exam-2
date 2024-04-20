@@ -1,20 +1,24 @@
 import PropTypes from 'prop-types';
 import FirstHeading from "../common/FirstHeading";
+import { useUserName } from '../../stores/useUserStore';
+import ProfileButtons from './ProfileButtons';
 
 function ProfileContent({ profile }) {
   const { banner: { url: bannerUrl }, avatar: { url: avatarUrl }, name } = profile.data;
+  const storageName = useUserName();
 
   return (
     <>
       <div className="relative">
         <figure className="mt-16">
-          <img src={bannerUrl} alt="Banner picture" />
+          <img src={bannerUrl} className="aspect-17/7 lg:aspect-17/5 w-full h-auto object-cover" alt="Banner picture" />
         </figure>
-        <figure className="w-2/4 mx-auto absolute bottom-0 left-0 right-0 translate-y-2/4">
-          <img src={avatarUrl} alt="Avatar picture" />
+        <figure className="w-2/5 sm:w-44 mx-auto absolute bottom-0 left-0 right-0 translate-y-2/4">
+          <img src={avatarUrl} className="aspect-square w-full h-auto object-cover profile-picture rounded-3xl" alt="Avatar picture" />
         </figure>
       </div>
-      <FirstHeading additionalClass="ml-7 mt-32">{name}</FirstHeading>
+      <FirstHeading additionalClass="ml-7 mt-32 text-center">{name}</FirstHeading>
+      {name === storageName && <ProfileButtons />}
     </>
    );
 }

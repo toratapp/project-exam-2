@@ -9,7 +9,7 @@ import PostList from "../posts/PostList";
 function HomePage() {
   const token = useToken();
   const navigate = useNavigate();
-  const { data, isLoading, isError } = useGetApi(POSTS_URL);
+  const { data, isLoading, isError } = useGetApi(POSTS_URL + "?_author=true");
 
   if(!token) {
     return navigate("/login");

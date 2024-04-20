@@ -21,6 +21,8 @@ module.exports = {
     extend: {
       aspectRatio: {
         '4/3': '4 / 3',
+        '17/7': '17 / 7',
+        '17/5': '17 / 5',
       }
     },
   },

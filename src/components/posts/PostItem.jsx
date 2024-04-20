@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const placeholderImageUrl = "https://teidsvag.com/no-image2.jpg";
 
 function PostItem({ post }) {
-  const { id, title, body, media } = post;
+  const { id, title, body, media, author: { name } } = post;
   const mediaUrl = media?.url;
 
   const truncateText = (text, limit) => {
@@ -21,8 +21,8 @@ function PostItem({ post }) {
   const truncatedBody = truncateText(body || '', 15);
 
   return (
-    <Card className="flex flex-row">
-      <Link className="flex-1 block" to={`post/${id}`}>
+    <Card className="flex flex-column sm:flex-row">
+      <Link className="flex-1 block self-center" to={`post/${id}`}>
         <figure>
           <img className="aspect-4/3 w-full h-auto object-cover"
                src={mediaUrl || placeholderImageUrl}
@@ -33,10 +33,13 @@ function PostItem({ post }) {
         </figure>
       </Link>
       <Card.Body className="flex-1">
-        <Link to={`post/${id}`}><Card.Title tag="h2">{title}</Card.Title></Link>
-        {body ? <p>{truncatedBody}</p> : <p>No body available</p>}
+        <div className="flex-1">
+          <Link to={`post/${id}`}><Card.Title tag="h2">{title}</Card.Title></Link>
+          <p className="font-light text-sm">{name}</p>
+          {body ? <p className="mt-2.5">{truncatedBody}</p> : <p>No body available</p>}
+        </div>
         <Card.Actions className="justify-end">
-          <Link to={`product/${id}`} className="text-link">Read more</Link>
+          <Link to={`product/${id}`} className="text-link">Read more &gt;</Link>
         </Card.Actions>
       </Card.Body>
     </Card>
@@ -53,6 +56,9 @@ PostItem.propTypes = {
     media: PropTypes.shape({
       url: PropTypes.string.isRequired,
       alt: PropTypes.string
-    })
+    }),
+    author: PropTypes.shape({
+      name: PropTypes.string.isRequired
+    }).isRequired
   }).isRequired
 };

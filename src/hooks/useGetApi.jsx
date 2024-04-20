@@ -28,7 +28,6 @@ export const useGetApi = (url) => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setData(data);
         } else {
           throw new Error("Error loading results");

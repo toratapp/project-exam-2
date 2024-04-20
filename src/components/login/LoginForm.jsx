@@ -14,7 +14,6 @@ function LoginForm() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-
   const { setUser } = useUserActions();
   const { json: apiKeyData, isError } = useCreateApiKey();
   const { setApiKey } = useApiKeyActions();
@@ -53,6 +52,8 @@ function LoginForm() {
       }
 
       setUser(json);
+      setApiKey();
+      window.location.reload();
       navigate("/");
     }
     catch(error) {

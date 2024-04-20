@@ -9,7 +9,7 @@ function MyProfilePage() {
   const name = useUserName();
 
   const { data, isLoading, isError } = useGetApi(PROFILES_URL + `/${name}`);
-  const { data: postsData, isLoading: postsIsLoading, isError: postsIsError } = useGetApi(PROFILES_URL + `/${name}/posts`);
+  const { data: postsData, isLoading: postsIsLoading, isError: postsIsError } = useGetApi(PROFILES_URL + `/${name}/posts?_author=true`);
 
   if(isLoading || postsIsLoading) {
     return <Loading />;
