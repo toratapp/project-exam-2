@@ -22,7 +22,7 @@ function PostItem({ post }) {
 
   return (
     <Card className="flex flex-column sm:flex-row">
-      <Link className="flex-1 block self-center" to={`post/${id}`}>
+      <Link className="flex-1 block self-center" to={`/posts/${id}`}>
         <figure>
           <img className="aspect-4/3 w-full h-auto object-cover"
                src={mediaUrl || placeholderImageUrl}
@@ -34,12 +34,12 @@ function PostItem({ post }) {
       </Link>
       <Card.Body className="flex-1">
         <div className="flex-1">
-          <Link to={`post/${id}`}><Card.Title tag="h2">{title}</Card.Title></Link>
+          <Link to={`/posts/${id}`}><Card.Title tag="h2">{title}</Card.Title></Link>
           <p className="font-light text-sm">{name}</p>
           {body ? <p className="mt-2.5">{truncatedBody}</p> : <p>No body available</p>}
         </div>
         <Card.Actions className="justify-end">
-          <Link to={`product/${id}`} className="text-link">Read more &gt;</Link>
+          <Link to={`/posts/${id}`} className="text-link">Read more &gt;</Link>
         </Card.Actions>
       </Card.Body>
     </Card>

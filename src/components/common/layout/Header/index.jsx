@@ -29,7 +29,7 @@ function Nav() {
               <Link to="/"><i className="fa-solid fa-magnifying-glass"></i></Link>
             </Menu.Item>
             <Menu.Item className="nav__icon-button">
-              <Link to={`profile/${name}`}><i className="fa-solid fa-user"></i></Link>
+              <Link to={`/profiles/${name}`}><i className="fa-solid fa-user"></i></Link>
             </Menu.Item>
           </Menu>
         </div>

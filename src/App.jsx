@@ -7,6 +7,7 @@ import CreatePostPage from './components/pages/CreatePostPage'
 import RegisterPage from './components/pages/RegisterPage'
 import LoginPage from './components/pages/LoginPage'
 import EditProfilePage from './components/pages/EditProfilePage'
+import PostPage from './components/pages/PostPage'
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="register" element={<RegisterPage />} />
           <Route path="login" element={<LoginPage />} />
-          <Route path="profile/:name" element={<MyProfilePage />} />
+          <Route path="/profiles/:name" element={<MyProfilePage />} />
           <Route path="create-post" element={<CreatePostPage />} />
           <Route path="edit-profile" element={<EditProfilePage />} />
+          <Route path="/posts/:id" element={<PostPage />} />
         </Route>
       </Routes>
     </div>

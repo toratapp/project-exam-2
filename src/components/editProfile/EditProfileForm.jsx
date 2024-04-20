@@ -4,16 +4,15 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from "./editProfileSchema";
 import { PROFILES_URL } from "../constants/api";
-import { useUserName, useUser, useUserActions } from "../../stores/useUserStore";
+import { useUserName } from "../../stores/useUserStore";
 import SuccessMessage from "../common/SuccessMessage";
 import { useState, useEffect } from "react";
 import { useToken } from "../../stores/useUserStore";
 import { useApiKey } from "../../stores/useApiKeyStore";
+import { useGetApi } from "../../hooks/useGetApi";
 
 function EditProfileForm() {
   const name = useUserName();
-  const user = useUser();
-  const { setUser } = useUserActions();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -24,17 +23,22 @@ function EditProfileForm() {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
+    reset
   } = useForm({
     resolver: yupResolver(editProfileSchema),
   });
 
+  const { data: getApiData } = useGetApi(`${PROFILES_URL}/${name}`);
+  const currentBannerUrl = getApiData?.data?.banner?.url;
+  const currentAvatarUrl = getApiData?.data?.avatar?.url;
+
   useEffect(() => {
-    if (user && user.data && user.data.avatar && user.data.avatar.url && user.data.banner && user.data.banner.url) {
-      setValue("avatar.url", user.data.avatar.url);
-      setValue("banner.url", user.data.banner.url);
+    if (currentBannerUrl && currentAvatarUrl) {
+      setValue("avatar.url", currentAvatarUrl);
+      setValue("banner.url", currentBannerUrl);
     }
-  }, [user, setValue]);
+  }, [getApiData, setValue, currentAvatarUrl, currentBannerUrl]);
 
   async function onSubmit(data) {
     const url = `${PROFILES_URL}/${name}`;
@@ -65,16 +69,8 @@ function EditProfileForm() {
 
       if (response.ok) {
         const json = await response.json();
-        const updatedAvatarUrl = json.data.avatar.url;
-        const updatedBannerUrl = json.data.banner.url;
-        setUser(prevUser => ({
-          ...prevUser,
-          data: {
-            ...prevUser.data,
-            avatar: { url: updatedAvatarUrl },
-            banner: { url: updatedBannerUrl }
-          }
-        }));
+        console.log("response: " + json);
+        reset();
         setIsSubmitted(true);
       } else {
         throw new Error("An error occured");
