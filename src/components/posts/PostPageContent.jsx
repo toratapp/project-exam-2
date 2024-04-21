@@ -7,6 +7,7 @@ import { useToken, useUserName } from '../../stores/useUserStore';
 import { useApiKey } from '../../stores/useApiKeyStore';
 import { POSTS_URL } from '../constants/api';
 import { useState } from 'react';
+import Comment from './Comment';
 
 function PostPageContent({ postData }) {
   const [reactionsData, setReactionsData] = useState(postData.reactions);
@@ -78,6 +79,7 @@ function PostPageContent({ postData }) {
         </ReactButton>
       </div>
       <Reactions reactions={reactions} />
+      <Comment id={id} />
       <CommentSection comments={comments} />
     </>
   );
