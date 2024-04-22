@@ -6,7 +6,7 @@ import { useApiKey } from "../../stores/useApiKeyStore";
 import { commentSchema } from "./commentSchema";
 import SuccessMessage from "../common/SuccessMessage";
 import ErrorMessage from "../common/ErrorMessage";
-import { Button, Input } from "react-daisyui";
+import { Button, Textarea } from "react-daisyui";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -43,6 +43,7 @@ function Comment({ id }) {
     try {
       setIsLoading(true);
       setError(null);
+      console.log(data);
       const response = await fetch(commentUrl, options);
       const json = await response.json();
   
@@ -68,7 +69,7 @@ function Comment({ id }) {
             <label className="label">
               <span className="label-text text-lg font-bold">Comment</span>
             </label>
-            <Input as="input" type="text" {...register("comment")} />
+            <Textarea as="input" type="text" {...register("comment")} />
             {errors.comment && <ErrorMessage>{errors.comment.message}</ErrorMessage>}
           </div>
         </div>

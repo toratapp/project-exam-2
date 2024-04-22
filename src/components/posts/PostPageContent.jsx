@@ -21,8 +21,7 @@ function PostPageContent({ postData }) {
     body, 
     author: { name, avatar: { url: avatarUrl } }, 
     media: { url: mediaUrl }, 
-    comments,
-    reactions
+    comments
   } = postData;
 
   async function react(symbol) {
@@ -31,7 +30,6 @@ function PostPageContent({ postData }) {
       method: "PUT",
       headers: {
         "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json",
         "X-Requested-With": "",
         "X-Noroff-API-Key": apiKey,
       }
@@ -41,8 +39,10 @@ function PostPageContent({ postData }) {
       const response = await fetch(reactUrl, options);
       console.log(response);
       if (response.ok) {
-        const updatedReactions = await response.json();
+        const reactionResults = await response.json();
+        const updatedReactions = reactionResults.data.reactions;
         setReactionsData(updatedReactions);
+        console.log("updatedReactions: " + updatedReactions);
       } else {
         throw new Error("An error occurred");
       }
@@ -65,20 +65,20 @@ function PostPageContent({ postData }) {
         <img src={mediaUrl} className="aspect-4/3 w-full h-auto object-cover" alt="Media picture" />
       </figure>
       <div className="react-buttons flex flex-row gap-5">
-        <ReactButton onClick={() => react("👍")} additionalClass={reactionsData.some(reaction => reaction.symbol === '👍' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
+        <ReactButton onClick={() => react("👍")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '👍' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
           <i className="fa-solid fa-thumbs-up text-3xl"></i>
         </ReactButton>
-        <ReactButton onClick={() => react("❤️")} additionalClass={reactionsData.some(reaction => reaction.symbol === '❤️' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
+        <ReactButton onClick={() => react("❤️")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '❤️' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
           <i className="fa-solid fa-heart text-3xl"></i>
         </ReactButton>
-        <ReactButton onClick={() => react("😢")} additionalClass={reactionsData.some(reaction => reaction.symbol === '😢' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
+        <ReactButton onClick={() => react("😢")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '😢' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
           <i className="fa-solid fa-face-sad-tear text-3xl"></i>
         </ReactButton>
-        <ReactButton onClick={() => react("😡")} additionalClass={reactionsData.some(reaction => reaction.symbol === '😡' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
+        <ReactButton onClick={() => react("😡")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '😡' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
           <i className="fa-solid fa-face-angry text-3xl"></i>
         </ReactButton>
       </div>
-      <Reactions reactions={reactions} />
+      <Reactions reactions={reactionsData} />
       <Comment id={id} />
       <CommentSection comments={comments} />
     </>
