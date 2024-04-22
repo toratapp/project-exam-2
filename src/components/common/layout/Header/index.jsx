@@ -26,10 +26,10 @@ function Nav() {
               <Link to="/create-post"><i className="fa-solid fa-square-plus"></i></Link>
             </Menu.Item>
             <Menu.Item className="nav__icon-button">
-              <Link to="/"><i className="fa-solid fa-magnifying-glass"></i></Link>
+              <Link to={`/profiles/${name}`}><i className="fa-solid fa-user"></i></Link>
             </Menu.Item>
             <Menu.Item className="nav__icon-button">
-              <Link to={`/profiles/${name}`}><i className="fa-solid fa-user"></i></Link>
+              <Link to="/profiles"><i className="fa-solid fa-users"></i></Link>
             </Menu.Item>
           </Menu>
         </div>

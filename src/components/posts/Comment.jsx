@@ -37,7 +37,7 @@ function Comment({ id }) {
         "X-Requested-With": "",
         "X-Noroff-API-Key": apiKey,
       },
-      body: data
+      body: JSON.stringify({ body: data.body }),
     };
 
     try {
@@ -69,7 +69,7 @@ function Comment({ id }) {
             <label className="label">
               <span className="label-text text-lg font-bold">Comment</span>
             </label>
-            <Textarea as="input" type="text" {...register("body")} />
+            <Textarea className="max-w-96" as="input" type="text" {...register("body")} />
             {errors.body && <ErrorMessage>{errors.body.message}</ErrorMessage>}
           </div>
         </div>
@@ -78,7 +78,7 @@ function Comment({ id }) {
         </div>
         {error && <ErrorMessage>{error}</ErrorMessage>}
         {isSubmitted && <div className="mt-4 text-center">
-          <SuccessMessage>Update successful</SuccessMessage>
+          <SuccessMessage>Comment posted</SuccessMessage>
         </div>}
       </fieldset>
     </form>

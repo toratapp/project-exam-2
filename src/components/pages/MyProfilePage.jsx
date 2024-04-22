@@ -20,7 +20,7 @@ function MyProfilePage() {
   }
 
   return ( 
-    <section className="container mx-auto">
+    <section className="container mx-auto mt-16">
       <ProfileContent  profile={data} />
       <PostList posts={postsData} />
     </section>

@@ -19,7 +19,11 @@ h1, h2, h3, h4 {
 }
 
 h2 {
-  font-size: 1.25rem !important;
+  font-size: 1.3rem !important;
+}
+
+h3 {
+  font-size: 1.22rem !important;
 }
 
 .logo {
@@ -103,6 +107,10 @@ h2 {
 
 .error {
   color: #b91c1c !important;
+}
+
+.success {
+  color: #267F35 !important;
 }
 
 .extra-header-mobile {

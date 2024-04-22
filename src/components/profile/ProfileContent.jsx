@@ -10,7 +10,7 @@ function ProfileContent({ profile }) {
   return (
     <>
       <div className="relative">
-        <figure className="mt-16">
+        <figure>
           <img src={bannerUrl} className="aspect-17/7 lg:aspect-17/5 w-full h-auto object-cover" alt="Banner picture" />
         </figure>
         <figure className="w-2/5 sm:w-44 mx-auto absolute bottom-0 left-0 right-0 translate-y-2/4">

@@ -5,6 +5,7 @@ import { useGetApi } from "../../hooks/useGetApi";
 import { POSTS_URL } from "../constants/api";
 import { Loading } from "react-daisyui";
 import PostList from "../posts/PostList";
+import ErrorMessage from "../common/ErrorMessage";
 
 function HomePage() {
   const token = useToken();
@@ -20,12 +21,12 @@ function HomePage() {
   }
 
   if(isError) {
-    return <p className="p-4">Error loading posts.</p>;
+    return <ErrorMessage>Error loading posts.</ErrorMessage>;
   }
 
   return ( 
-    <section className="container mx-auto p-4">
-      <FirstHeading additionalClass="mt-20 ml-7">Posts</FirstHeading>
+    <section className="container mx-auto p-7 mt-16">
+      <FirstHeading>Posts</FirstHeading>
       <PostList  posts={data} />
     </section>
   );

@@ -36,7 +36,7 @@ function PostItem({ post }) {
           <div className="flex-1">
             <Link to={`/posts/${id}`}><Card.Title tag="h2">{title}</Card.Title></Link>
             <p className="font-light text-sm">{name}</p>
-            {body ? <p className="mt-2.5">{truncatedBody}</p> : <p>No body available</p>}
+            {body ? <p className="mt-2.5">{truncatedBody}</p> : <p>No body text</p>}
           </div>
           <Card.Actions className="justify-end">
             <Link to={`/posts/${id}`} className="text-link">Read more &gt;</Link>
