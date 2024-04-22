@@ -69,8 +69,8 @@ function Comment({ id }) {
             <label className="label">
               <span className="label-text text-lg font-bold">Comment</span>
             </label>
-            <Textarea as="input" type="text" {...register("comment")} />
-            {errors.comment && <ErrorMessage>{errors.comment.message}</ErrorMessage>}
+            <Textarea as="input" type="text" {...register("body")} />
+            {errors.body && <ErrorMessage>{errors.body.message}</ErrorMessage>}
           </div>
         </div>
         <div className="w-80 mt-7 flex flex-col items-start">
