@@ -11,7 +11,7 @@ function ProfileSearch() {
   const filteredProfiles = profiles?.filter((profile) => profile.title.toLowerCase().includes(searchValue.toLowerCase()));
 
   return (
-    <div className="relative w-80 py-4 md:p-4 font-sans">
+    <div className="relative w-80 py-4 ml-7 font-sans">
       <Input placeholder="Search" className="w-full" value={searchValue} onChange={(event) => setSearchValue(event.target.value.trim())} />
       {filteredProfiles && filteredProfiles.length > 0 && searchValue.length > 0 && (
         <ul className="absolute z-30 bg-teal-100 left-5 right-5">

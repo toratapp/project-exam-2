@@ -5,7 +5,7 @@ function ProfilesList({ profiles }) {
   return  (
     <div>
       {profiles.data.map(profile => (
-        <div key={profile.email} className="flex flex-row mb-6">
+        <div key={profile.email} className="flex flex-row mb-6 px-7">
           <Link to={`/profiles/${profile.name}`}>
             <figure className="w-20">
               <img src={profile.avatar.url} className="aspect-square w-full h-auto object-cover profile-picture rounded-3xl" alt="Avatar picture" />

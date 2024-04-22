@@ -5,8 +5,20 @@ import { Loading } from "react-daisyui";
 import ProfileContent from "../profile/ProfileContent";
 import PostList from "../posts/PostList";
 import ErrorMessage from '../common/ErrorMessage';
+import { useEffect } from "react";
+import { useToken } from "../../stores/useUserStore";
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
+  const token = useToken();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
+
   let { name } = useParams();
 
   const { data, isLoading, isError } = useGetApi(PROFILES_URL + `/${name}`);
