@@ -1,12 +1,13 @@
-import { useUserName } from "../../stores/useUserStore";
+import { useParams } from 'react-router-dom';
 import { PROFILES_URL } from "../constants/api";
 import { useGetApi } from "../../hooks/useGetApi";
 import { Loading } from "react-daisyui";
 import ProfileContent from "../profile/ProfileContent";
 import PostList from "../posts/PostList";
+import ErrorMessage from '../common/ErrorMessage';
 
-function MyProfilePage() {
-  const name = useUserName();
+function ProfilePage() {
+  let { name } = useParams();
 
   const { data, isLoading, isError } = useGetApi(PROFILES_URL + `/${name}`);
   const { data: postsData, isLoading: postsIsLoading, isError: postsIsError } = useGetApi(PROFILES_URL + `/${name}/posts?_author=true`);
@@ -16,7 +17,7 @@ function MyProfilePage() {
   }
 
   if(isError || postsIsError) {
-    return <p className="p-4">Error loading posts.</p>;
+    return <ErrorMessage>Error loading posts.</ErrorMessage>;
   }
 
   return ( 
@@ -27,4 +28,4 @@ function MyProfilePage() {
   );
 }
 
-export default MyProfilePage;
+export default ProfilePage;

@@ -1,6 +1,6 @@
 import FirstHeading from "../common/FirstHeading";
 
-import RegisterForm from "../register/RegisterForm";
+import RegisterForm from "../common/auth/register/RegisterForm";
 
 function RegisterPage() {
   return (

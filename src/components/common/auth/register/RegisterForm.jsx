@@ -1,10 +1,10 @@
 import { Button, Input } from "react-daisyui";
-import ErrorMessage from "../common/ErrorMessage";
+import ErrorMessage from "../../ErrorMessage";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from "./registerSchema";
 import { useState } from "react";
-import { REGISTER_URL } from "../constants/api";
+import { REGISTER_URL } from "../../../constants/api";
 import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import FirstHeading from "../common/FirstHeading";
 import { useUserName } from '../../stores/useUserStore';
 import ProfileButtons from './ProfileButtons';
+import { Button } from 'react-daisyui';
 
 function ProfileContent({ profile }) {
   const { banner: { url: bannerUrl }, avatar: { url: avatarUrl }, name } = profile.data;
@@ -17,8 +18,8 @@ function ProfileContent({ profile }) {
           <img src={avatarUrl} className="aspect-square w-full h-auto object-cover profile-picture rounded-3xl" alt="Avatar picture" />
         </figure>
       </div>
-      <FirstHeading additionalClass="ml-7 mt-32 text-center">{name}</FirstHeading>
-      {name === storageName && <ProfileButtons />}
+      <FirstHeading additionalClass="mt-32 text-center">{name}</FirstHeading>
+      {name === storageName ? <ProfileButtons /> : <Button className="cta block w-24 mx-auto mb-6">Follow</Button>}
     </>
    );
 }

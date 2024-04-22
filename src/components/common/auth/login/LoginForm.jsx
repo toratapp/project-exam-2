@@ -1,13 +1,13 @@
 import { Button, Input } from "react-daisyui";
-import ErrorMessage from "../common/ErrorMessage";
+import ErrorMessage from "../../ErrorMessage";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema } from "./loginSchema";
 import { useState } from "react";
-import { LOGIN_URL, APIKEY_URL } from "../constants/api";
+import { LOGIN_URL, APIKEY_URL } from "../../../constants/api";
 import { useNavigate } from "react-router-dom";
-import { useUserActions } from "../../stores/useUserStore";
-import { useApiKeyActions } from "../../stores/useApiKeyStore";
+import { useUserActions } from "../../../../stores/useUserStore";
+import { useApiKeyActions } from "../../../../stores/useApiKeyStore";
 
 function LoginForm() {
 

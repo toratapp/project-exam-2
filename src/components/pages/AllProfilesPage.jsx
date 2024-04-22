@@ -4,7 +4,7 @@ import { PROFILES_URL } from "../constants/api";
 import { Loading } from "react-daisyui";
 import ProfilesList from "../profile/ProfilesList";
 import ErrorMessage from "../common/ErrorMessage";
-
+import ProfileSearch from "../profile/ProfileSearch";
 
 function AllProfilesPage() {
   const { data, isLoading, isError } = useGetApi(PROFILES_URL);
@@ -18,8 +18,9 @@ function AllProfilesPage() {
   }
 
   return ( 
-    <section className="container mx-auto p-7 mt-16 max-w-3xl">
-      <FirstHeading>All profiles</FirstHeading>
+    <section className="container mx-auto p-7 mt-16 max-w-md">
+      <FirstHeading additionalClass="text-center">Profiles</FirstHeading>
+      <ProfileSearch />
       <ProfilesList profiles={data} />
     </section>
   );

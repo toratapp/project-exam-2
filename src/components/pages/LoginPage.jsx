@@ -1,5 +1,5 @@
 import FirstHeading from "../common/FirstHeading";
-import LoginForm from "../login/LoginForm";
+import LoginForm from "../common/auth/login/LoginForm"
 
 function LoginPage() {
   return (

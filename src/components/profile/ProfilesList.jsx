@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function ProfilesList({ profiles }) {
   return  (
     <div>
       {profiles.data.map(profile => (
         <div key={profile.email} className="flex flex-row mb-6">
-          <figure className="w-20">
-            <img src={profile.avatar.url} className="aspect-square w-full h-auto object-cover profile-picture rounded-3xl" alt="Avatar picture" />
-          </figure>
-          <h2 className="ml-6 self-center">{profile.name}</h2>
+          <Link to={`/profiles/${profile.name}`}>
+            <figure className="w-20">
+              <img src={profile.avatar.url} className="aspect-square w-full h-auto object-cover profile-picture rounded-3xl" alt="Avatar picture" />
+            </figure>
+          </Link>
+          <Link className="self-center" to={`/profiles/${profile.name}`}>
+            <h2 className="ml-6">{profile.name}</h2>
+          </Link>
         </div>
       ))}
     </div>
