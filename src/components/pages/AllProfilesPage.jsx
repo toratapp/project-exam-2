@@ -18,7 +18,7 @@ function AllProfilesPage() {
   }
 
   return ( 
-    <section className="container mx-auto p-7 mt-16">
+    <section className="container mx-auto p-7 mt-16 max-w-3xl">
       <FirstHeading>All profiles</FirstHeading>
       <ProfilesList profiles={data} />
     </section>
