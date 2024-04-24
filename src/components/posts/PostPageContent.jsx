@@ -8,6 +8,7 @@ import { useApiKey } from '../../stores/useApiKeyStore';
 import { POSTS_URL } from '../constants/api';
 import { useState } from 'react';
 import Comment from './Comment';
+import PostButtons from './PostButtons';
 
 function PostPageContent({ postData }) {
   const [reactionsData, setReactionsData] = useState(postData.reactions);
@@ -57,6 +58,7 @@ function PostPageContent({ postData }) {
         </figure>
         <FirstHeading additionalClass="self-center pl-2">{name}</FirstHeading>
       </div>
+      {name === userName && <PostButtons id={id} token={token} apiKey={apiKey} />}
       <h2 className="mt-7 mb-2">{title}</h2>
       <p className="mb-4 max-w-screen-md">{body}</p>
       <figure className="mb-4">
