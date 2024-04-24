@@ -92,7 +92,7 @@ function EditProfileForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Avatar (url)</span>
             </label>
-            <Input as="input" type="text" {...register("avatar.url")} />
+            <Input as="input" type="text" className="brown-border-1" {...register("avatar.url")} />
             {errors["avatar.url"] && <ErrorMessage>{errors["avatar.url"].message}</ErrorMessage>}
           </div>
         </div>
@@ -101,7 +101,7 @@ function EditProfileForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Banner (url)</span>
             </label>
-            <Input as="input" type="text" {...register("banner.url")} />
+            <Input as="input" type="text" className="brown-border-1" {...register("banner.url")} />
             {errors["banner.url"] && <ErrorMessage>{errors["banner.url"].message}</ErrorMessage>}
           </div>
         </div>

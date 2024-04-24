@@ -42,6 +42,14 @@ h3 {
   text-decoration: underline;
 }
 
+.burgundy-border-2 {
+  border: 2px solid #540D2A !important;
+}
+
+.brown-border-1 {
+  border: 1px solid #3A3228 !important;
+}
+
 .navbar {
   padding: 0 !important;
   min-height: auto !important;

@@ -17,7 +17,7 @@ function AllProfilesPage() {
     if (!token) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate, token]);
 
   const { data, isLoading, isError } = useGetApi(PROFILES_URL);
 

@@ -64,16 +64,13 @@ function Comment({ id }) {
   return ( 
     <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
       <fieldset disabled={isLoading}>
-        <div className="w-full font-sans mb-3">
+        <div className="w-full font-sans mb-3 mt-10">
           <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text text-lg font-bold">Comment</span>
-            </label>
-            <Textarea className="max-w-96" as="input" type="text" {...register("body")} />
+            <Textarea className="max-w-96 burgundy-border-2" as="input" type="text" {...register("body")} />
             {errors.body && <ErrorMessage>{errors.body.message}</ErrorMessage>}
           </div>
         </div>
-        <div className="w-80 mt-7 flex flex-col items-start">
+        <div className="w-80 mt-4 flex flex-col items-start">
           <Button type="submit" className="cta">{isLoading ? "..." : "Comment"}</Button>
         </div>
         {error && <ErrorMessage>{error}</ErrorMessage>}

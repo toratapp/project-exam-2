@@ -79,7 +79,7 @@ function LoginForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Email</span>
             </label>
-            <Input as="input" type="email" {...register("email")} />
+            <Input as="input" type="email" className="brown-border-1" {...register("email")} />
             {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
           </div>
         </div>
@@ -88,7 +88,7 @@ function LoginForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Password</span>
             </label>
-            <Input as="input" type="password" {...register("password")} />
+            <Input as="input" type="password" className="brown-border-1" {...register("password")} />
             {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
           </div>
         </div>

@@ -58,7 +58,7 @@ function PostPageContent({ postData }) {
         <FirstHeading additionalClass="self-center pl-2">{name}</FirstHeading>
       </div>
       <h2 className="mt-7 mb-2">{title}</h2>
-      <p className="mb-4 max-w-xl">{body}</p>
+      <p className="mb-4 max-w-screen-md">{body}</p>
       <figure className="mb-4">
         <img src={mediaUrl} className="aspect-4/3 w-full h-auto object-cover" alt="Media picture" />
       </figure>

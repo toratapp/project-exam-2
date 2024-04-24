@@ -65,7 +65,7 @@ function RegisterForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Username</span>
             </label>
-            <Input as="input" type="text" {...register("name")} />
+            <Input as="input" type="text" className="brown-border-1" {...register("name")} />
             {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
           </div>
         </div>
@@ -74,7 +74,7 @@ function RegisterForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Email</span>
             </label>
-            <Input as="input" type="email" {...register("email")} />
+            <Input as="input" type="email" className="brown-border-1" {...register("email")} />
             {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
           </div>
         </div>
@@ -83,7 +83,7 @@ function RegisterForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Password</span>
             </label>
-            <Input as="input" type="password" {...register("password")} />
+            <Input as="input" type="password" className="brown-border-1" {...register("password")} />
             {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
           </div>
         </div>
@@ -92,7 +92,7 @@ function RegisterForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Avatar (url)</span>
             </label>
-            <Input as="input" type="text" {...register("avatar.url")} />
+            <Input as="input" type="text" className="brown-border-1" {...register("avatar.url")} />
             {errors["avatar.url"] && <ErrorMessage>{errors["avatar.url"].message}</ErrorMessage>}
           </div>
         </div>
@@ -101,7 +101,7 @@ function RegisterForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Banner (url)</span>
             </label>
-            <Input as="input" type="text" {...register("banner.url")} />
+            <Input as="input" type="text" className="brown-border-1" {...register("banner.url")} />
             {errors["banner.url"] && <ErrorMessage>{errors["banner.url"].message}</ErrorMessage>}
           </div>
         </div>

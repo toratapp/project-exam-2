@@ -6,15 +6,18 @@ import { POSTS_URL } from "../constants/api";
 import { Loading } from "react-daisyui";
 import PostList from "../posts/PostList";
 import ErrorMessage from "../common/ErrorMessage";
+import { useEffect } from "react";
 
 function HomePage() {
   const token = useToken();
   const navigate = useNavigate();
   const { data, isLoading, isError } = useGetApi(POSTS_URL + "?_author=true");
 
-  if(!token) {
-    return navigate("/login");
-  }
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate, token]);
 
   if(isLoading) {
     return <Loading />;

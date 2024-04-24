@@ -17,7 +17,7 @@ function ProfilePage() {
     if (!token) {
       navigate("/login");
     }
-  }, []);
+  }, [navigate, token]);
 
   let { name } = useParams();
 

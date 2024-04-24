@@ -21,7 +21,7 @@ function PostPage() {
   const postData = data.data;
 
   return (
-    <section className="container post-page-main-section p-7 flex flex-col max-w-screen-lg mx-auto mb-20 mt-16">
+    <section className="container post-page-main-section p-7 flex flex-col max-w-screen-md mx-auto mb-20 mt-16">
       <PostPageContent postData={postData} />
     </section>
   );
