@@ -12,6 +12,7 @@ import PostButtons from './PostButtons';
 
 function PostPageContent({ postData }) {
   const [reactionsData, setReactionsData] = useState(postData.reactions);
+  const [error, setError] = useState(null);
   const token = useToken();
   const apiKey = useApiKey();
   const userName = useUserName();
@@ -38,15 +39,16 @@ function PostPageContent({ postData }) {
 
     try {
       const response = await fetch(reactUrl, options);
-      if (response.ok) {
-        const reactionResults = await response.json();
-        const updatedReactions = reactionResults.data.reactions;
-        setReactionsData(updatedReactions);
-      } else {
-        throw new Error("An error occurred");
+      if (!response.ok) {
+        throw new Error("Failed to react to post");
       }
+      const reactionResults = await response.json();
+      const updatedReactions = reactionResults.data.reactions;
+      setReactionsData(updatedReactions);
+      setError(null);
     } catch (error) {
-      console.log(error);
+      console.log("Error reactiong to post:", error);
+      setError("Failed to react to post. Please try again later.");
     }
   }
 
@@ -64,6 +66,7 @@ function PostPageContent({ postData }) {
       <figure className="mb-4">
         <img src={mediaUrl} className="aspect-4/3 w-full h-auto object-cover" alt="Media picture" />
       </figure>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <div className="react-buttons flex flex-row gap-5">
         <ReactButton onClick={() => react("👍")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '👍' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
           <i className="fa-solid fa-thumbs-up text-3xl"></i>

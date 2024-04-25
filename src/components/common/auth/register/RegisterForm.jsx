@@ -59,7 +59,6 @@ function RegisterForm() {
   return ( 
     <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
       <fieldset disabled={isLoading}>
-        {error && <ErrorMessage>{error}</ErrorMessage>}
         <div className="w-full font-sans mb-3">
           <div className="form-control w-full">
             <label className="label">
@@ -105,6 +104,7 @@ function RegisterForm() {
             {errors["banner.url"] && <ErrorMessage>{errors["banner.url"].message}</ErrorMessage>}
           </div>
         </div>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
         <div className="w-80 mt-7 flex flex-col items-start">
           <Button type="submit" className="cta">{isLoading ? "..." : "Register"}</Button>
         </div>

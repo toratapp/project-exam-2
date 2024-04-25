@@ -15,7 +15,7 @@ function PostPage() {
   }
   
   if (isError) {
-    return <ErrorMessage>Error loading products.</ErrorMessage>;
+    return <ErrorMessage>Error loading post.</ErrorMessage>;
   }
 
   const postData = data.data;

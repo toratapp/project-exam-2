@@ -9,6 +9,7 @@ import EditProfilePage from './components/pages/EditProfilePage'
 import PostPage from './components/pages/PostPage'
 import AllProfilesPage from './components/pages/AllProfilesPage'
 import ProfilePage from './components/pages/ProfilePage'
+import EditPostPage from './components/pages/EditPostPage'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profiles" element={<AllProfilesPage />} />
           <Route path="create-post" element={<CreatePostPage />} />
           <Route path="/posts/:id" element={<PostPage />} />
+          <Route path="/posts/:id/edit-post" element={<EditPostPage />} />
         </Route>
       </Routes>
     </div>
