@@ -100,6 +100,20 @@ h3 {
   font-style: italic;
 }
 
+.search-field button {
+  background-color: #540D2A !important;
+  color: #FFF !important;
+  font-size: 1.1rem;
+  border-radius: 0rem 0.5rem 0.5rem 0rem;
+  height: 50px;
+}
+
+.search-field input {
+  border-radius: 0.5rem 0rem 0rem 0.5rem;
+  height: 48px;
+  margin-top: 1px;
+}
+
 .react-button {
   border: 2px solid #540D2A;
   color: #540D2A !important;
@@ -144,6 +158,10 @@ h3 {
 
 .profile-picture {
   border: 3px solid #540D2A;
+}
+
+.profiles__search-section ul {
+  background: #FFF78D !important;
 }
 
 @media (min-width: 768px) {

@@ -1,23 +1,79 @@
 import { useState } from "react";
-import { Input } from "react-daisyui";
-import { useGetApi } from "../../hooks/useGetApi";
+import { Button, Input } from "react-daisyui";
 import { PROFILES_URL } from "../constants/api";
+import { useToken } from "../../stores/useUserStore";
+import { useApiKey } from "../../stores/useApiKeyStore";
 import { Link } from 'react-router-dom';
+import ErrorMessage from "../common/ErrorMessage";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { searchSchema } from "./searchSchema";
 
 function ProfileSearch() {
-  const [searchValue, setSearchValue] = useState("");
-  const { data: profiles } = useGetApi(`${PROFILES_URL}/search?q=${searchValue}`);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [searchResults, setSearchResults] = useState(null);
+  const token = useToken();
+  const apiKey = useApiKey();
 
-  const filteredProfiles = profiles?.filter((profile) => profile.title.toLowerCase().includes(searchValue.toLowerCase()));
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(searchSchema),
+  });
+
+
+  async function onSubmit(data) {
+    const searchValue = encodeURIComponent(data.value);
+
+    const searchUrl = `${PROFILES_URL}/search?q=${searchValue}`;
+
+    const options = {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "X-Requested-With": "",
+        "X-Noroff-API-Key": apiKey,
+      },
+    };
+
+    try {
+      setIsLoading(true);
+      setError(null);
+      const response = await fetch(searchUrl, options);
+      const json = await response.json();
+  
+      if(!response.ok) {
+        return setError(json.errors?.[0]?.message ?? "An error occured");
+      }
+      setSearchResults(json);
+      console.log("json: ", json);
+    }
+    catch(error) {
+      setError(error.toString());
+    }
+    finally {
+      setIsLoading(false);
+    }
+  }
 
   return (
-    <div className="relative w-80 py-4 ml-7 font-sans">
-      <Input placeholder="Search" className="w-full" value={searchValue} onChange={(event) => setSearchValue(event.target.value.trim())} />
-      {filteredProfiles && filteredProfiles.length > 0 && searchValue.length > 0 && (
-        <ul className="absolute z-30 bg-teal-100 left-5 right-5">
-          {filteredProfiles.map((profile) => (
+    <div className="relative w-80 py-4 ml-7 font-sans profiles__search-section">
+      <form  onSubmit={handleSubmit(onSubmit)}>
+        <fieldset className="flex flex-row search-field" disabled={isLoading}>
+          <Input placeholder="Search" className="w-full brown-border-1" {...register("value")} />
+          {errors.value && <ErrorMessage>{errors.value.message}</ErrorMessage>}
+          <Button type="submit"><i className="fa-solid fa-magnifying-glass"></i></Button>
+        </fieldset>
+      </form>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {searchResults && searchResults.data.length > 0 && (
+        <ul className="absolute z-30 left-5 right-5">
+          {searchResults.data.map((profile) => (
             <li key={profile.name} className="cursor-pointer p-2">
-              <Link to={`/profiles/${profile.name}`} className="block p-4 hover:bg-middle-green hover:font-semibold">{profile.title}</Link>
+              <Link to={`/profiles/${profile.name}`} className="block p-4 hover:underline hover:font-semibold">{profile.name}</Link>
             </li>
           ))}
         </ul>
