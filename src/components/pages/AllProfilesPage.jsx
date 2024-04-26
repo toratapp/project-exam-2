@@ -19,7 +19,7 @@ function AllProfilesPage() {
     }
   }, [navigate, token]);
 
-  const { data, isLoading, isError } = useGetApi(PROFILES_URL);
+  const { data, isLoading, isError } = useGetApi(`${PROFILES_URL}/?sort=name&sortOrder=asc`);
 
   if(isLoading) {
     return <Loading />;

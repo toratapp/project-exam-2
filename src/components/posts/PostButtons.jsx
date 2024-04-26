@@ -42,9 +42,9 @@ function PostButtons({ id }) {
   }
   return (
     <>
-      <div className="flex flex-row mx-auto justify-between">
-        <Link to="/edit-post"><Button className="cta block">Edit post <i className="fa-solid fa-pencil ml-1"></i></Button></Link>
-        <Button type="button" className="cta block" onClick={handleDeletePost}>Delete post <i className="fa-solid fa-trash-can"></i></Button>
+      <div className="flex flex-row justify-between mt-9">
+        <Link to="edit-post" className="postbutton__edit"><Button className="cta block">Edit post <i className="fa-solid fa-pencil ml-1"></i></Button></Link>
+        <Button type="button" className="cta block postbutton__delete" onClick={handleDeletePost}>Delete post <i className="fa-solid fa-trash-can"></i></Button>
       </div>
       {error && <ErrorMessage>{error}</ErrorMessage>}
     </>
