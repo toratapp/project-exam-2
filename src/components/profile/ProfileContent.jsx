@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import FirstHeading from "../common/FirstHeading";
 import { useUserName } from '../../stores/useUserStore';
 import ProfileButtons from './ProfileButtons';
-import { Button } from 'react-daisyui';
+import FollowButton from './FollowButton';
 
 function ProfileContent({ profile }) {
-  const { banner: { url: bannerUrl }, avatar: { url: avatarUrl }, name } = profile.data;
+  const { banner: { url: bannerUrl }, avatar: { url: avatarUrl }, name, followers } = profile.data;
   const storageName = useUserName();
 
   return (
@@ -19,7 +19,7 @@ function ProfileContent({ profile }) {
         </figure>
       </div>
       <FirstHeading additionalClass="mt-32 text-center">{name}</FirstHeading>
-      {name === storageName ? <ProfileButtons /> : <Button className="cta block w-24 mx-auto mb-6">Follow</Button>}
+      {name === storageName ? <ProfileButtons /> : <FollowButton followers={followers} name={name} />}
     </>
    );
 }
@@ -33,7 +33,12 @@ ProfileContent.propTypes = {
       avatar: PropTypes.shape({
         url: PropTypes.string.isRequired
       }).isRequired,
-      name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
+      followers: PropTypes.arrayOf(
+        PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        })
+      ).isRequired
     }).isRequired
   }).isRequired
 };

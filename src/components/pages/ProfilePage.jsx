@@ -21,7 +21,7 @@ function ProfilePage() {
 
   let { name } = useParams();
 
-  const { data, isLoading, isError } = useGetApi(PROFILES_URL + `/${name}`);
+  const { data, isLoading, isError } = useGetApi(PROFILES_URL + `/${name}?_followers=true`);
   const { data: postsData, isLoading: postsIsLoading, isError: postsIsError } = useGetApi(PROFILES_URL + `/${name}/posts?_author=true`);
 
   if(isLoading || postsIsLoading) {

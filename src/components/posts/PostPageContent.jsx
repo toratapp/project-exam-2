@@ -10,6 +10,7 @@ import { useState } from 'react';
 import Comment from './Comment';
 import PostButtons from './PostButtons';
 import ErrorMessage from '../common/ErrorMessage';
+import { Link } from 'react-router-dom';
 
 function PostPageContent({ postData }) {
   const [reactionsData, setReactionsData] = useState(postData.reactions);
@@ -55,12 +56,14 @@ function PostPageContent({ postData }) {
 
   return ( 
     <>
-      <div className="flex flex-row gap-2">
-        <figure className="w-16 sm:w-20">
-          <img src={avatarUrl} className="aspect-square w-full h-auto object-cover profile-picture rounded-2xl" alt="Avatar picture" />
-        </figure>
-        <FirstHeading additionalClass="self-center pl-2">{name}</FirstHeading>
-      </div>
+      <Link to={`/profiles/${name}`}>
+        <div className="flex flex-row gap-2">
+          <figure className="w-16 sm:w-20">
+            <img src={avatarUrl} className="aspect-square w-full h-auto object-cover profile-picture rounded-2xl" alt="Avatar picture" />
+          </figure>
+          <FirstHeading additionalClass="self-center pl-2">{name}</FirstHeading>
+        </div>
+      </Link>
       {name === userName && <PostButtons id={id} />}
       <h2 className="mt-7 mb-2">{title}</h2>
       <p className="mb-4 max-w-screen-md">{body}</p>
@@ -69,16 +72,16 @@ function PostPageContent({ postData }) {
       </figure>
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <div className="react-buttons flex flex-row gap-5">
-        <ReactButton onClick={() => react("👍")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '👍' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
+        <ReactButton onClick={() => react("👍")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '👍' && reaction.reactors.some(reactor => reactor.toLowerCase() === userName.toLowerCase())) ? 'user-reacted' : ''}>
           <i className="fa-solid fa-thumbs-up text-3xl"></i>
         </ReactButton>
-        <ReactButton onClick={() => react("❤️")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '❤️' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
+        <ReactButton onClick={() => react("❤️")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '❤️' && reaction.reactors.some(reactor => reactor.toLowerCase() === userName.toLowerCase())) ? 'user-reacted' : ''}>
           <i className="fa-solid fa-heart text-3xl"></i>
         </ReactButton>
-        <ReactButton onClick={() => react("😢")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '😢' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
+        <ReactButton onClick={() => react("😢")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '😢' && reaction.reactors.some(reactor => reactor.toLowerCase() === userName.toLowerCase())) ? 'user-reacted' : ''}>
           <i className="fa-solid fa-face-sad-tear text-3xl"></i>
         </ReactButton>
-        <ReactButton onClick={() => react("😡")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '😡' && reaction.reactors.includes(userName)) ? 'user-reacted' : ''}>
+        <ReactButton onClick={() => react("😡")} additionalClass={Array.isArray(reactionsData) && reactionsData.some(reaction => reaction.symbol === '😡' && reaction.reactors.some(reactor => reactor.toLowerCase() === userName.toLowerCase())) ? 'user-reacted' : ''}>
           <i className="fa-solid fa-face-angry text-3xl"></i>
         </ReactButton>
       </div>
