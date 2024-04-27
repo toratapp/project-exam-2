@@ -34,7 +34,7 @@ function PostItem({ post }) {
         </Link>
         <Card.Body className="flex-1">
           <div className="flex-1">
-            <Link to={`/posts/${id}`}><Card.Title tag="h2">{title}</Card.Title></Link>
+            <Link to={`/posts/${id}`}><Card.Title tag="h2" className="hover:underline">{title}</Card.Title></Link>
             <p className="font-light text-sm">{name}</p>
             {body ? <p className="mt-2.5">{truncatedBody}</p> : <p className="mt-2.5">No body text</p>}
           </div>
