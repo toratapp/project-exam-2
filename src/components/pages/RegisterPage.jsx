@@ -10,7 +10,7 @@ function RegisterPage() {
       <RegisterForm />
       <div className="flex gap-2 mt-4">
         <p className="text-lg">Already have an account?</p>
-        <Link to="/register" className="text-link mt-0.5">Login &gt;</Link>
+        <Link to="/login" className="text-link mt-0.5">Login &gt;</Link>
       </div>
     </section>
   );

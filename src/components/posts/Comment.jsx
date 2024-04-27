@@ -10,7 +10,7 @@ import { Button, Textarea } from "react-daisyui";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-function Comment({ id }) {
+function Comment({ id, updateComments }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -50,6 +50,7 @@ function Comment({ id }) {
       if(!response.ok) {
         return setError(json.errors?.[0]?.message ?? "An error occured");
       }
+      updateComments(json.data);
       setIsSubmitted(true);
       reset();
     }
@@ -84,6 +85,7 @@ function Comment({ id }) {
 
 Comment.propTypes = {
   id: PropTypes.number.isRequired,
+  updateComments: PropTypes.func.isRequired,
 };
 
 export default Comment;

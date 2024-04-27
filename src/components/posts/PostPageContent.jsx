@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 
 function PostPageContent({ postData }) {
   const [reactionsData, setReactionsData] = useState(postData.reactions);
+  const [comments, setComments] = useState(postData.comments);
   const [error, setError] = useState(null);
   const token = useToken();
   const apiKey = useApiKey();
@@ -25,7 +26,6 @@ function PostPageContent({ postData }) {
     body, 
     author: { name, avatar: { url: avatarUrl } }, 
     media: { url: mediaUrl }, 
-    comments
   } = postData;
 
   async function react(symbol) {
@@ -52,6 +52,10 @@ function PostPageContent({ postData }) {
       console.log("Error reactiong to post:", error);
       setError("Failed to react to post. Please try again later.");
     }
+  }
+
+  function updateComments(newComment) {
+    setComments([...comments, newComment]);
   }
 
   return ( 
@@ -86,7 +90,7 @@ function PostPageContent({ postData }) {
         </ReactButton>
       </div>
       <Reactions reactions={reactionsData} />
-      <Comment id={id} />
+      <Comment id={id} updateComments={updateComments} />
       <CommentSection comments={comments} />
     </>
   );
