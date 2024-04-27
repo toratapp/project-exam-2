@@ -75,7 +75,7 @@ function Comment({ id, updateComments }) {
           <Button type="submit" className="cta">{isLoading ? "..." : "Comment"}</Button>
         </div>
         {error && <ErrorMessage>{error}</ErrorMessage>}
-        {isSubmitted && <div className="mt-4 text-center">
+        {isSubmitted && <div className="mt-4">
           <SuccessMessage>Comment posted</SuccessMessage>
         </div>}
       </fieldset>

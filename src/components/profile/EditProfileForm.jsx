@@ -108,7 +108,7 @@ function EditProfileForm() {
         <div className="w-80 mt-7 flex flex-col items-start">
           <Button type="submit" className="cta">{isLoading ? "..." : "Update"}</Button>
         </div>
-        {isSubmitted && <div className="mt-4 text-center">
+        {isSubmitted && <div className="mt-4">
           <SuccessMessage>Update successful</SuccessMessage>
         </div>}
       </fieldset>

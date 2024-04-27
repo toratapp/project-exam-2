@@ -7,7 +7,7 @@ function EditPostPage() {
 
   return (
     <section className="container p-7 flex flex-col max-w-screen-sm mx-auto mb-20 mt-16">
-      <FirstHeading>Edit profile</FirstHeading>
+      <FirstHeading>Edit post</FirstHeading>
       <EditPostForm id={id} />
     </section>
   );

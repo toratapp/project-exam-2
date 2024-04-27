@@ -94,7 +94,7 @@ function CreatePostForm() {
           </div>
         </div>
         {isError && <ErrorMessage>An error occured.</ErrorMessage>}
-        {isSubmitted && <div className="mt-4 text-center">
+        {isSubmitted && <div className="mt-4">
           <SuccessMessage>Post created</SuccessMessage>
         </div>}
         <div className="w-80 mt-7 flex flex-col items-start">
