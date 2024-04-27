@@ -71,7 +71,7 @@ function CreatePostForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Title</span>
             </label>
-            <Input as="input" type="text" {...register("title")} />
+            <Input as="input" type="text" className="brown-border-1" {...register("title")} />
             {errors["title"] && <ErrorMessage>{errors["title"].message}</ErrorMessage>}
           </div>
         </div>
@@ -80,7 +80,7 @@ function CreatePostForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Body</span>
             </label>
-            <Textarea as="input" type="text" {...register("body")} />
+            <Textarea as="input" type="text" className="brown-border-1" {...register("body")} />
             {errors["body"] && <ErrorMessage>{errors["body"].message}</ErrorMessage>}
           </div>
         </div>
@@ -89,7 +89,7 @@ function CreatePostForm() {
             <label className="label">
               <span className="label-text text-lg font-bold">Media (url)</span>
             </label>
-            <Input as="input" type="text" {...register("media.url")} />
+            <Input as="input" type="text" className="brown-border-1" {...register("media.url")} />
             {errors["media.url"] && <ErrorMessage>{errors["media.url"].message}</ErrorMessage>}
           </div>
         </div>
