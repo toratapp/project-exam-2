@@ -65,7 +65,7 @@ function PostPageContent({ postData }) {
           <figure className="w-16 sm:w-20">
             <img src={avatarUrl} className="aspect-square w-full h-auto object-cover profile-picture rounded-2xl" alt="Avatar picture" />
           </figure>
-          <FirstHeading additionalClass="self-center pl-2">{name}</FirstHeading>
+          <FirstHeading additionalClass="self-center pl-2 hover:underline">{name}</FirstHeading>
         </div>
       </Link>
       {name === userName && <PostButtons id={id} />}
