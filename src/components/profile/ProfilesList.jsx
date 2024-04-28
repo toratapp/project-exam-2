@@ -2,10 +2,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function ProfilesList({ profiles }) {
+  const filteredProfiles = profiles.data.filter(profile => (
+    profile.avatar.url !== "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400" &&
+    (!profile.banner || profile.banner.url !== "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=500&w=1500")
+  ));
+
   return  (
     <div>
-      {profiles.data.map(profile => (
-        <div key={profile.email} className="flex flex-row mb-6 px-7 md:px-0">
+      {filteredProfiles.map(profile => (
+        <div key={profile.email} className="flex flex-row mb-6 px-7">
           <Link to={`/profiles/${profile.name}`}>
             <figure className="w-20">
               <img src={profile.avatar.url} className="aspect-square w-full h-auto object-cover profile-picture rounded-2xl" alt="Avatar picture" />
