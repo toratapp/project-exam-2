@@ -30,8 +30,8 @@ function AllProfilesPage() {
   }
 
   return ( 
-    <section className="container mx-auto pt-7 mt-16 max-w-md">
-      <FirstHeading additionalClass="text-center">Profiles</FirstHeading>
+    <section className="container mx-auto pt-7 mt-16 max-w-screen-sm">
+      <FirstHeading additionalClass="ml-7 md:ml-0">Profiles</FirstHeading>
       <ProfileSearch />
       <ProfilesList profiles={data} />
     </section>

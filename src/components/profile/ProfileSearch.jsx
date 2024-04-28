@@ -60,7 +60,7 @@ function ProfileSearch() {
   }
 
   return (
-    <div className="relative w-80 py-4 ml-7 font-sans profiles__search-section">
+    <div className="relative py-4 mx-7 md:mx-0 mb-4 font-sans profiles__search-section">
       <form  onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="flex flex-row search-field" disabled={isLoading}>
           <Input placeholder="Search" className="w-full brown-border-1" {...register("value")} />
