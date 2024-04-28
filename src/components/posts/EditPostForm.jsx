@@ -64,7 +64,7 @@ function EditPostForm({ id }) {
     };
 
     try {
-      setIsError(false);
+      setIsError(null);
       setIsLoading(true);
       const response = await fetch(url, options);
 
@@ -74,11 +74,12 @@ function EditPostForm({ id }) {
         reset();
         setIsSubmitted(true);
       } else {
-        throw new Error("An error occured");
+        const errorData = await response.json();
+        throw new Error(errorData.errors[0].message);
       }
     } catch (error) {
       console.log(error);
-      setIsError(true);
+      setIsError(error);
     } finally {
       setIsLoading(false);
     }
@@ -114,7 +115,7 @@ function EditPostForm({ id }) {
             {errors["media.url"] && <ErrorMessage>{errors["media.url"].message}</ErrorMessage>}
           </div>
         </div>
-        {isError && <ErrorMessage>An error occured.</ErrorMessage>}
+        {isError && <ErrorMessage>{isError.message || "An error occurred"}</ErrorMessage>}
         <div className="w-80 mt-7 flex flex-col items-start">
           <Button type="submit" className="cta">{isLoading ? "..." : "Update"}</Button>
         </div>

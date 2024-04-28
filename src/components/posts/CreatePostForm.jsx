@@ -30,20 +30,20 @@ function CreatePostForm() {
       ...data,
       media: data.media,
     });
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json",
-        "X-Requested-With": "",
-        "X-Noroff-API-Key": apiKey,
-      },
-      body: body
-    };
-
+    
     try {
-      setIsError(false);
+      const options = {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+          "X-Requested-With": "",
+          "X-Noroff-API-Key": apiKey,
+        },
+        body: body
+      };
+    
+      setIsError(null);
       setIsLoading(true);
       const response = await fetch(POSTS_URL, options);
 
@@ -53,11 +53,11 @@ function CreatePostForm() {
         reset();
         setIsSubmitted(true);
       } else {
-        throw new Error("An error occured");
+        const errorData = await response.json();
+        throw new Error(errorData.errors[0].message);
       }
     } catch (error) {
-      console.log(error);
-      setIsError(true);
+      setIsError(error);
     } finally {
       setIsLoading(false);
     }
@@ -93,7 +93,7 @@ function CreatePostForm() {
             {errors["media.url"] && <ErrorMessage>{errors["media.url"].message}</ErrorMessage>}
           </div>
         </div>
-        {isError && <ErrorMessage>An error occured.</ErrorMessage>}
+        {isError && <ErrorMessage>{isError.message || "An error occurred"}</ErrorMessage>}
         {isSubmitted && <div className="mt-4">
           <SuccessMessage>Post created</SuccessMessage>
         </div>}
@@ -106,8 +106,3 @@ function CreatePostForm() {
 }
 
 export default CreatePostForm;
-
-
-
-
-
