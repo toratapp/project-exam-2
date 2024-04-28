@@ -63,7 +63,7 @@ h3 {
 
 .nav__icon-button a {
   display: inline-block !important;
-  padding: 0.7rem;
+  padding: 0.3rem;
 }
 
 .navbar__buttons a:hover {
@@ -89,6 +89,15 @@ h3 {
   padding: 0;
 }
 
+.active {
+  color: #992350 !important;
+  border-top: 3px solid #992350;
+}
+
+.navbar-with-buttons i.active {
+  color: #992350 !important;
+}
+
 .cta {
   background-color: #540D2A !important;
   color: #FFF !important;
@@ -109,10 +118,18 @@ h3 {
   margin-left: -1px;
 }
 
+.search-field button:hover {
+  background-color: #992350 !important;
+}
+
 .search-field input {
   border-radius: 0.5rem 0rem 0rem 0.5rem;
   height: 48px;
   margin-top: 1px;
+}
+
+.profiles__search-section ul {
+  background: #FFF78D !important;
 }
 
 .react-button {
@@ -161,10 +178,6 @@ h3 {
   border: 3px solid #540D2A;
 }
 
-.profiles__search-section ul {
-  background: #FFF78D !important;
-}
-
 .footer-content {
   color: #3A3228;
 }
@@ -175,5 +188,10 @@ h3 {
     top: 0;
     border-top: none;
     border-bottom: 2px solid #540D2A;
+  }
+
+  .active {
+    border-bottom: 3px solid #992350;
+    border-top: 0;
   }
 }
