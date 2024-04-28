@@ -4,9 +4,11 @@ import Logo from '/logo.svg';
 import ExtraHeaderMobile from "./ExtraHeaderMobile";
 import RegisterLoginLogout from "./RegisterLoginLogout";
 import { useUserName } from "../../../../stores/useUserStore";
+import { useToken } from "../../../../stores/useUserStore";
 
 function Nav() {
   const name = useUserName();
+  const token = useToken();
 
   return (
     <div>
@@ -17,7 +19,7 @@ function Nav() {
             <img src={Logo} className="logo p-0.5 md:p-0 ml-2 md:ml-4" alt="Logo" />
           </Link>
         </div>
-        <div className="navbar__buttons relative block w-full md:w-80">
+        {token && <div className="navbar__buttons relative block w-full md:w-80">
           <Menu horizontal={true} className="flex justify-between ml-4 mr-4">
             <Menu.Item className="nav__icon-button">
               <Link to="/"><i className="fa-solid fa-house"></i></Link>
@@ -32,7 +34,7 @@ function Nav() {
               <Link to="/profiles"><i className="fa-solid fa-users"></i></Link>
             </Menu.Item>
           </Menu>
-        </div>
+          </div>}
         <div className="hidden md:block mr-1">
           <RegisterLoginLogout />
         </div>
