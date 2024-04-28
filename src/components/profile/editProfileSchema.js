@@ -6,7 +6,7 @@ export const editProfileSchema = yup
       url: yup.string().min(11, "This is a required field, must contain a valid url.").required("This is a required field, must contain a valid url."),
     }),
     banner: yup.object().shape({
-      url: yup.string().min(11, "This is a required field, must contain a valid url.").required("This is a required field, must contain a valid url."),
+      url: yup.string().required("This is a required field, must contain a valid url."),
     }),
   })
   .required();

@@ -40,7 +40,7 @@ function LoginForm() {
       const json = await response.json();
 
       if(!response.ok) {
-        return setError(json.errors?.[0]?.message ?? "An error occured");
+        return setError(json.errors?.[0]?.message || "An error occured");
       }
 
       setUser(json);
@@ -57,7 +57,8 @@ function LoginForm() {
           throw new Error("Error fetching API key");
         }    
       } catch(error) {
-        console.error("Error fetching API key");
+        console.error(error);
+        setError(error.toString());
       }
       
       navigate("/");

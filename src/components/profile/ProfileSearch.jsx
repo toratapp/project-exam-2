@@ -78,6 +78,11 @@ function ProfileSearch() {
           ))}
         </ul>
       )}
+      {searchResults && searchResults.data.length === 0 && (
+        <ul className="absolute z-30 left-5 right-5">
+          <li className="p-6">No search results</li>
+        </ul>
+      )}
     </div>
   );
 }
